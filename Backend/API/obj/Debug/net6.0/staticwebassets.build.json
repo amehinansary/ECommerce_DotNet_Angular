@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "cigEK8OZK3SH8qZXLihODrs3Ktc1T1QnxFH/aYCNmaY=",
+  "Source": "API",
+  "BasePath": "_content/API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "API\\wwwroot",
+      "Source": "API",
+      "ContentRoot": "F:\\Work_22\\Giza_Systems_23\\Study_Plan\\Udemy\\Practical\\E_Commerce\\Backend\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "F:\\Work_22\\Giza_Systems_23\\Study_Plan\\Udemy\\Practical\\E_Commerce\\Backend\\API\\wwwroot\\index.html",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Work_22\\Giza_Systems_23\\Study_Plan\\Udemy\\Practical\\E_Commerce\\Backend\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
+}

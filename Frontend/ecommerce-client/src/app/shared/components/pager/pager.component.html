@@ -1,0 +1,11 @@
+<ngb-pagination
+  [boundaryLinks]="true"
+  [collectionSize]="totalCount"
+  (pageChanged)="onPagerChange($event)"
+  [ngModel]="pageNumber"
+  [(page)]="pageSize"
+  previousText="&lsaquo;"
+  nextText="&rsaquo;"
+  firstText="&laquo;"
+  lastText="&raquo;">
+</ngb-pagination>
