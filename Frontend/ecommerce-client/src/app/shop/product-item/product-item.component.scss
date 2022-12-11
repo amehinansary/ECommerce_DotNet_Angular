@@ -3,8 +3,8 @@
 }
 
 .btn {
-    width: 30%;
-    height: 40px;
+    width: 40%;
+    // height: 40px;
 }
 
 .image :hover {
@@ -35,4 +35,14 @@
     & button:last-of-type {
         transform: translateX(20px);
     }
+}
+
+// .card-body {
+//   min-height: 123px;
+// }
+
+.crop {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

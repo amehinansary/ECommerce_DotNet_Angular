@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   createLoginForm() {
-    this.loginForm = new FormGroup({
+    this.loginForm = new FormGroup({// first parm of form control => initial form state
       email: new FormControl('', [Validators.required, Validators
         .pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]),
       password: new FormControl('', Validators.required),
@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.accountService.login(this.loginForm.value).subscribe(() => {
-      this.router.navigateByUrl(this.returnUrl);
-    }, error => {
-      console.log(error);
-    })
+    this.accountService.login(this.loginForm.value).subscribe({
+      next: (n) => this.router.navigateByUrl(this.returnUrl),
+      error: (e) => console.log(e),
+      complete: () => console.info('complete')
+    });
   }
 
 }

@@ -16,19 +16,22 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(private shopService: ShopService, private activatedRoute: ActivatedRoute,
     private bcService: BreadcrumbService, private basketService: BasketService) {
-    this.bcService.set('@productDetails', ' ')
+    this.bcService.set('@productDetails', ' ')//empty is better than nothing
   }
 
   ngOnInit(): void {
     this.loadProduct();
   }
 
-  loadProduct() {
-    this.shopService.getProduct(Number(this.activatedRoute.snapshot.paramMap.get('id'))).subscribe(product => {
-      this.product = product;
-      this.bcService.set('@productDetails', product.name);
-    }, error => {
-      console.log(error);
+  loadProduct() {// here u can do the new implemn of subscribe
+    console.log(+this.activatedRoute.snapshot.paramMap.get('id'));
+    this.shopService.getProduct(+this.activatedRoute.snapshot.paramMap.get('id')).subscribe({
+      next: (product) => {
+        this.product = product;
+        this.bcService.set('@productDetails', product.name);
+      },
+      error: (error) => { console.log(error); },
+      complete: () => console.info('complete')
     })
   }
 

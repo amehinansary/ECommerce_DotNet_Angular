@@ -841,7 +841,7 @@
           "lib/net5.0/StackExchange.Redis.dll": {}
         }
       },
-      "Stripe.net/40.16.0": {
+      "Stripe.net/41.2.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "12.0.3",
@@ -2297,10 +2297,10 @@
         "stackexchange.redis.nuspec"
       ]
     },
-    "Stripe.net/40.16.0": {
-      "sha512": "2qC8izhWx/551uXBsD7fh97kRUOwOVgYA6Vnb/tRBvVfJGi/bofDcSq5p7B483TlRlMK5ejAVpuaucBFhK7JiA==",
+    "Stripe.net/41.2.0": {
+      "sha512": "cj0tHKNsah+w9stRqfwzYd0ewfoc9jc+dDubHjHin5YGPBcdloq8A4e9k09bzijAaqjsHQ2W356Y3OobGJ2KSg==",
       "type": "package",
-      "path": "stripe.net/40.16.0",
+      "path": "stripe.net/41.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2316,7 +2316,7 @@
         "lib/netcoreapp3.1/Stripe.net.xml",
         "lib/netstandard2.0/Stripe.net.dll",
         "lib/netstandard2.0/Stripe.net.xml",
-        "stripe.net.40.16.0.nupkg.sha512",
+        "stripe.net.41.2.0.nupkg.sha512",
         "stripe.net.nuspec"
       ]
     },
@@ -2977,7 +2977,7 @@
       "Microsoft.IdentityModel.Tokens >= 6.8.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 6.0.7",
       "StackExchange.Redis >= 2.6.70",
-      "Stripe.net >= 40.16.0",
+      "Stripe.net >= 41.2.0",
       "System.IdentityModel.Tokens.Jwt >= 6.8.0"
     ]
   },
@@ -3060,7 +3060,7 @@
           },
           "Stripe.net": {
             "target": "Package",
-            "version": "[40.16.0, )"
+            "version": "[41.2.0, )"
           },
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",

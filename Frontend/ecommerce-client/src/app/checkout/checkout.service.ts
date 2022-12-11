@@ -20,7 +20,7 @@ export class CheckoutService {
 
   getDeliveryMethods(): Observable<IDeliveryMethod[]> {
     return this.http.get(this.baseUrl + 'orders/deliveryMethods').pipe(
-      map((dm: any) => { // try to solve any issue and IDeliveryMethod[] uggggh
+      map((dm: any) => { // try to solve any issue IDeliveryMethod[] uggggh
         return dm.sort((a: any, b: any) => b.price - a.price);
       })
     )

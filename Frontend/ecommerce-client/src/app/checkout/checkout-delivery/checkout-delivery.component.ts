@@ -16,10 +16,10 @@ export class CheckoutDeliveryComponent implements OnInit {
   constructor(private checkoutService: CheckoutService, private basketService: BasketService) { }
 
   ngOnInit(): void {
-    this.checkoutService.getDeliveryMethods().subscribe((dm: IDeliveryMethod[]) => {
-      this.deliveryMethods = dm;
-    }, error => {
-      console.log(error);
+    this.checkoutService.getDeliveryMethods().subscribe({
+      next: (dm) => this.deliveryMethods = dm,
+      error: (err) => console.log(err),
+      complete: () => console.info('complete')
     })
   }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { AccountService } from "./account/account.service";
+import { BasketService } from "./basket/basket.service";
 
 @Component({
   selector: 'app-root',
@@ -6,11 +8,33 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'ecommerce-client';
+  title = 'ecommerce-skinet';
 
-  constructor() {
+  constructor(private basketService: BasketService, private accountService: AccountService) {
   }
 
   ngOnInit(): void {
+    this.loadBasket();
+    this.loadCurrentUser();
+  }
+
+  loadCurrentUser() {
+    const token = localStorage.getItem('token');
+    this.accountService.loadCurrentUser(token).subscribe({
+      next: (v) => console.log('loaded user'),
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    })
+  }
+
+  loadBasket() {
+    const basketId = localStorage.getItem('basket_id');
+    if (basketId) {
+      this.basketService.getBasket(basketId).subscribe({
+        next: (v) => console.log('initialised basket'),
+        error: (e) => console.error(e),
+        complete: () => console.info('complete')
+      })
+    }
   }
 }

@@ -7,6 +7,8 @@ import { IBasket } from 'src/app/shared/models/basket';
 import { IOrder } from 'src/app/shared/models/order';
 import { CheckoutService } from '../checkout.service';
 
+// Stripe is a suite of APIs powering online payment processing and commerce solutions
+// for internet businesses of all sizes. Accept payments and scale faster.
 declare var Stripe: any;
 
 @Component({
@@ -15,12 +17,12 @@ declare var Stripe: any;
   styleUrls: ['./checkout-payment.component.scss']
 })
 export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
-  @Input() checkoutForm!: FormGroup;
+  @Input() checkoutForm!: FormGroup;// static: true => we no gonna use any structual directive
   @ViewChild('cardNumber', { static: true }) cardNumberElement!: ElementRef;
   @ViewChild('cardExpiry', { static: true }) cardExpiryElement!: ElementRef;
   @ViewChild('cardCvc', { static: true }) cardCvcElement!: ElementRef;
-  stripe: any;
-  cardNumber: any;
+  stripe: any;// to get access to js functionality
+  cardNumber: any;// the reason for any that we not using type script with Stripe but JS
   cardExpiry: any;
   cardCvc: any;
   cardErrors: any;
@@ -33,8 +35,8 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   constructor(private basketService: BasketService, private checkoutService: CheckoutService,
     private toastr: ToastrService, private router: Router) { }
 
-  ngAfterViewInit(): void {
-    this.stripe = Stripe('pk_test_2PZ84pFKu2MddUgGDG521v9m00SlLWySIR');
+  ngAfterViewInit(): void {// gives html a chance to initialize then we mount Stripe elements
+    this.stripe = Stripe('pk_test_51MDLWUJBeCv6crDE1JC5EFHPV7kwzsGkjJnhc66dyeVCBVauXdLgiP1QJE5gWArnUHKhXYWeIYe3QsNV5SsSCJVe00QSGVobXB');
     const elements = this.stripe.elements();
 
     this.cardNumber = elements.create('cardNumber');

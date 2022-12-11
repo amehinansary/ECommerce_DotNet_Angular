@@ -23,7 +23,7 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
     CdkStepperModule,
     RouterModule
   ],
-  exports: [
+  exports: [ // so it's available for use when we import our shared module into any module
     NgbModule,
     PagingHeaderComponent,
     PagerComponent,

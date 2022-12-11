@@ -13,6 +13,7 @@ import { ShopService } from './shop.service';
 
 export class ShopComponent implements OnInit {// to get the template variable of html
   // false if our html input element is dependent on another elm or using directives
+  // false means this child gonna appear after we got our products available
   @ViewChild('search', { static: false }) searchTerm!: ElementRef;
   products: IProduct[] = [];
   brands: IBrand[] = [];
@@ -37,11 +38,15 @@ export class ShopComponent implements OnInit {// to get the template variable of
   }
 
   getProducts(useCache = false) {
-    this.shopService.getProducts(useCache).subscribe(response => {
-      this.products = response.data;
-      this.totalCount = response.count;
-    }, error => {
-      console.log(error);
+    this.shopService.getProducts(useCache).subscribe({
+      next: (response) => {
+        this.products = response.data;
+        this.totalCount = response.count;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => console.info('complete')
     })
   }
 
@@ -89,6 +94,7 @@ export class ShopComponent implements OnInit {// to get the template variable of
   onPageChanged(event: any) {
     const params = this.shopService.getShopParams();
     if (params.pageNumber !== event) { // solving the issue of multiple ideal requests in network
+      console.log(event);
       params.pageNumber = event;
       this.shopService.setShopParams(params);
       this.getProducts(true);

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bBeHNpUvo/82TpPsQuOq7p5Gk46MhqXf2BYW2/vcmgTbn9NXlEB4uxbN2wx1sepOJTJqoEM7Aa621xyikjLOsg==",
+  "dgSpecHash": "wT4WBJkFsObBTRmmpgpGD1nrD5m8cL5L0yfQNT1b05s3Gpz21qOGgPEnoa4HKtrO1SrOECwD+zECGNbkCml6QQ==",
   "success": true,
   "projectFilePath": "F:\\Work_22\\Giza_Systems_23\\Study_Plan\\Udemy\\Practical\\E_Commerce\\Backend\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -63,7 +63,7 @@
     "C:\\Users\\Amehin\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.6\\sqlitepclraw.lib.e_sqlite3.2.0.6.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.0.6\\sqlitepclraw.provider.e_sqlite3.2.0.6.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\stackexchange.redis\\2.6.70\\stackexchange.redis.2.6.70.nupkg.sha512",
-    "C:\\Users\\Amehin\\.nuget\\packages\\stripe.net\\40.16.0\\stripe.net.40.16.0.nupkg.sha512",
+    "C:\\Users\\Amehin\\.nuget\\packages\\stripe.net\\41.2.0\\stripe.net.41.2.0.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.0\\system.configuration.configurationmanager.6.0.0.nupkg.sha512",

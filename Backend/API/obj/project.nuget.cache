@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "o/YuKihAZ/MStEk/EYjtmnESydkeWT8rQ+4uNp8fQFd6B+ZsOu4PvJ1PBtq4lWgi5bOMFqfXYo4mKlsBJk+Arw==",
+  "dgSpecHash": "AJXc0Nt4aWVUWJFMIozLo+dK8OdjWJViEXIb5eGGTdjPEQxQGt4Baj2weGDm0CTiejoCZccpsT85ztIoQQts4Q==",
   "success": true,
   "projectFilePath": "F:\\Work_22\\Giza_Systems_23\\Study_Plan\\Udemy\\Practical\\E_Commerce\\Backend\\API\\API.csproj",
   "expectedPackageFiles": [
@@ -71,7 +71,7 @@
     "C:\\Users\\Amehin\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.6\\sqlitepclraw.lib.e_sqlite3.2.0.6.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.0.6\\sqlitepclraw.provider.e_sqlite3.2.0.6.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\stackexchange.redis\\2.6.70\\stackexchange.redis.2.6.70.nupkg.sha512",
-    "C:\\Users\\Amehin\\.nuget\\packages\\stripe.net\\40.16.0\\stripe.net.40.16.0.nupkg.sha512",
+    "C:\\Users\\Amehin\\.nuget\\packages\\stripe.net\\41.2.0\\stripe.net.41.2.0.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

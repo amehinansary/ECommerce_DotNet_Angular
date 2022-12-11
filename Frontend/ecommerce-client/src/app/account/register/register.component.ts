@@ -21,23 +21,24 @@ export class RegisterComponent implements OnInit {
   }
 
   createRegisterForm() {
-    this.registerForm = this.fb.group({
+    this.registerForm = this.fb.group({//equivelant to new group()
       displayName: [null, [Validators.required]],
-      email: [null,
-        [Validators.required, Validators
-          .pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')],
-        [this.validateEmailNotTaken()]
+      email: [null, [Validators.required, Validators
+        .pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')],// es7a w foo2 ya negm
+        [this.validateEmailNotTaken()]// this gets called if only sync validation has passed
       ],
       password: [null, Validators.required]
     });
   }
 
   onSubmit() {
-    this.accountService.register(this.registerForm.value).subscribe(response => {
-      this.router.navigateByUrl('/shop');
-    }, error => {
-      console.log(error);
-      this.errors = error.errors;
+    this.accountService.register(this.registerForm.value).subscribe({
+      next: () => this.router.navigateByUrl('/shop'),
+      error: error => {
+        console.log(error);
+        this.errors = error.errors;
+      },
+      complete: () => console.info('complete')
     })
   }
 
@@ -48,7 +49,7 @@ export class RegisterComponent implements OnInit {
           if (!control.value) {
             return of(null);
           }
-          return this.accountService.checkEmailExists(control.value).pipe(
+          return this.accountService.checkEmailExists(control.value).pipe(//email address
             map(res => {
               return res ? { emailExists: true } : null;
             })

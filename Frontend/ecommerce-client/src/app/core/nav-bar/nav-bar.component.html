@@ -2,22 +2,53 @@
   <div class="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 mb-3 px-md-4 border-bottom
     bg-white border-bottom shadow-sm fixed-top">
 
-    <img src="/assets/images/logo.png" style="max-height: 70px;" alt="logo">
+    <img src="/assets/images/logo.png" class="logo" alt="logo" [routerLink]="['/']">
 
-    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto text-uppercase text-dark" style="font-size: larger;">
-      <a class="me-3 py-2 text-dark text-decoration-none" href="#">Home</a>
-      <a class="me-3 py-2 text-dark text-decoration-none" href="#">Shop</a>
-      <a class="me-3 py-2 text-dark text-decoration-none" href="#">Contact</a>
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto text-dark" style="font-size: larger;">
+      <a class="me-3 py-2 text-decoration-none" [routerLink]="['/']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a class="me-3 py-2 text-decoration-none" routerLink="/shop" routerLinkActive="active">Shop</a>
+      <a class="me-3 py-2 text-decoration-none" routerLink="/test-error" routerLinkActive="active">Errors</a>
     </nav>
     <!-- <a class="me-3 py-2 text-dark text-decoration-none" href="#">Pricing</a> -->
     <div class="d-flex align-items-center">
-      <a href="" class="position-relative">
-        <i class="bi bi-cart-dash-fill fa-3x me-4 text-dark"></i>
-        <div class="cart-no">5</div>
+      <a href="" class="position-relative" routerLink="/basket">
+        <i class="fa fa-shopping-cart fa-2x me-4 text-dark"></i>
+        <div *ngIf="(basket$ | async) as basket" class="cart-no">{{basket.items.length}}</div>
       </a>
-      <ng-container>
-        <a routerLink="/account/login" class="btn btn-outline-secondary me-2" href="#">Login</a>
-        <a routerLink="/account/register" class="btn btn-outline-secondary me-3" href="#">Sign up</a>
+      <ng-container *ngIf="(currentUser$ | async) === null">
+        <a routerLink="/account/login" class="btn btn-outline-secondary me-2">Login</a>
+        <a routerLink="/account/register" class="btn btn-outline-secondary me-3">Sign up</a>
+      </ng-container>
+      <ng-container *ngIf="(currentUser$ | async) as user">
+        <div class="btn-group ml-3 me-5" ngbDropdown>
+          <a class="dropdown-toggle" ngbDropdownToggle role="button" id="dropdownMenuLink" style="cursor: pointer;">
+
+            <strong>Welcome {{(currentUser$ | async).displayName}}</strong>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdown3" style="cursor:pointer">
+            <li><a ngbDropdownItem (click)="$event.preventDefault()" routerLink="/basket"
+                class="dropdown-item d-flex align-items-center py-2">
+                <i class="fa fa-shopping-cart me-2"></i> View Basket
+              </a>
+            </li>
+            <li>
+              <a ngbDropdownItem (click)="$event.preventDefault()" routerLink="/orders"
+                class="dropdown-item d-flex align-items-center py-2">
+                <i class="fa fa-history me-2"></i> View Orders
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a ngbDropdownItem (click)="$event.preventDefault()" (click)="logout()"
+                class="dropdown-item d-flex align-items-center py-2">
+                <i class="fa fa-sign-out me-2"></i> Logout
+              </a>
+            </li>
+          </ul>
+        </div>
       </ng-container>
     </div>
   </div>

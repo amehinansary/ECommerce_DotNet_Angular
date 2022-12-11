@@ -5,12 +5,14 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
   selector: 'app-text-input',
   templateUrl: './text-input.component.html',
   styleUrls: ['./text-input.component.scss']
-})
+})// to access the form control value we gonna implement CVAcc
 export class TextInputComponent implements OnInit, ControlValueAccessor {
+  // to get access to that native element (input) we need @ViewChild
   @ViewChild('input', { static: true }) input!: ElementRef;
   @Input() type = 'text';
   @Input() label = 'string';
-
+  // to get access to the validation we need to inject the ControlValueAccessor itself
+  // NgControl is what our FormControl derives from.
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
   }
@@ -22,18 +24,19 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
 
     control.setValidators(validators);
     control.setAsyncValidators(asyncValidators);
-    control.updateValueAndValidity();
+    control.updateValueAndValidity();// validate our form on intialization
   }
 
   onChange(event: any) { }
 
   onTouched() { }
 
+  // required
   writeValue(obj: any): void {
     this.input.nativeElement.value = obj || '';
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: any): void {// fn => the value we get from the ControlValueAccessor
     this.onChange = fn;
   }
 

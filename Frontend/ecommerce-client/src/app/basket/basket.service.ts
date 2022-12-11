@@ -13,7 +13,8 @@ import { IProduct } from '../shared/models/product';
 export class BasketService {
   baseUrl = environment.apiUrl;
   private basketSource = new BehaviorSubject<IBasket>(null!);
-  basket$ = this.basketSource.asObservable();
+  basket$ = this.basketSource.asObservable();// subscripe using the async pipe in order to get
+  // the value of whatever the basket values are
   private basketTotalSource = new BehaviorSubject<IBasketTotals>(null!);
   basketTotal$ = this.basketTotalSource.asObservable();
   shipping = 0;
@@ -39,11 +40,12 @@ export class BasketService {
     this.setBasket(basket);
   }
 
-  getBasket(id: string) {
+  getBasket(id: string) {//  here u can create a config file and set these URLs
     return this.http.get(this.baseUrl + 'basket?id=' + id)
-      .pipe(
-        map((basket: any) => { // basket: IBasket
-          this.basketSource.next(basket);
+      .pipe(// so we make use of our rxjs operators
+        map((basket: any) => { // solve this => basket: IBasket erro(object, void)
+          this.basketSource.next(basket);// in order to set the basket value
+          // console.log(this.getCurrentBasketValue());
           this.shipping = basket.shippingPrice;
           this.calculateTotals();
         })
@@ -52,7 +54,7 @@ export class BasketService {
 
   setBasket(basket: IBasket) { // response: IBasket
     return this.http.post(this.baseUrl + 'basket', basket).subscribe((response: any) => {
-      this.basketSource.next(response);
+      this.basketSource.next(response);// dis gonna update our behavior subject with the new value
       this.calculateTotals();
     }, error => {
       console.log(error);
@@ -67,6 +69,7 @@ export class BasketService {
     const itemToAdd: IBasketItem = this.mapProductItemToBasketItem(item, quantity);
     const basket = this.getCurrentBasketValue() ?? this.createBasket();
     basket.items = this.addOrUpdateItem(basket.items, itemToAdd, quantity);
+    console.info(basket);
     this.setBasket(basket);
   }
 
@@ -107,13 +110,15 @@ export class BasketService {
   }
 
   deleteBasket(basket: IBasket) {
-    return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe(() => {
-      this.basketSource.next(null!);
-      this.basketTotalSource.next(null!);
-      localStorage.removeItem('basket_id');
-    }, error => {
-      console.log(error);
-    })
+    return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe({
+      next: (n) => {
+        this.basketSource.next(null!);
+        this.basketTotalSource.next(null!);
+        localStorage.removeItem('basket_id');
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('copmlete')
+    });
   }
 
   private calculateTotals() {

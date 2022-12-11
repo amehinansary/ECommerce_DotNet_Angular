@@ -13,6 +13,7 @@ import { IUser } from '../shared/models/user';
 export class AccountService {
   baseUrl = environment.apiUrl;
   private currentUserSource = new ReplaySubject<IUser>(1);
+  // private currentUserSourceBeh = new BehaviorSubject<IUser>(null!);
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -38,7 +39,7 @@ export class AccountService {
 
   login(values: any) {
     return this.http.post(this.baseUrl + 'account/login', values).pipe(
-      map((user: any) => {
+      map((user: any) => {// user: IUser
         if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);

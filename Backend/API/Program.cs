@@ -18,17 +18,19 @@ builder.Services.AddDbContext<StoreContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultSqlite")));
 // builder.Services.AddDbContext<StoreContext>(x =>
 //     x.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-// builder.Services.AddDbContext<AppIdentityDbContext>(x =>
-// {
-//   x.UseNpgsql(builder.Configuration.GetConnectionString("IdentityConnection"));
-// });
-// builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
-// {
-//   var configuration = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"), true);
-//   return ConnectionMultiplexer.Connect(configuration);
-// });
+builder.Services.AddDbContext<AppIdentityDbContext>(x =>
+{
+  x.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnectionSqlite"));
+  // x.UseNpgsql(builder.Configuration.GetConnectionString("IdentityConnection"));
+});
+builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
+{
+  var configuration = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"), true);
+  return ConnectionMultiplexer.Connect(configuration);
+});
 builder.Services.AddApplicationServices();
-// builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
+
 builder.Services.AddSwaggerDocumentation();
 builder.Services.AddCors(opt =>
 {

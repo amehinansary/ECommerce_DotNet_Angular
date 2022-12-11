@@ -185,3 +185,7 @@ F:\Work_22\Giza_Systems_23\Study_Plan\Udemy\Practical\E_Commerce\Backend\API\obj
 F:\Work_22\Giza_Systems_23\Study_Plan\Udemy\Practical\E_Commerce\Backend\API\obj\Debug\net6.0\API.genruntimeconfig.cache
 F:\Work_22\Giza_Systems_23\Study_Plan\Udemy\Practical\E_Commerce\Backend\API\obj\Debug\net6.0\ref\API.dll
 F:\Work_22\Giza_Systems_23\Study_Plan\Udemy\Practical\E_Commerce\Backend\API\bin\Debug\net6.0\API.staticwebassets.runtime.json
+F:\Work_22\Giza_Systems_23\Study_Plan\Udemy\Practical\E_Commerce\Backend\API\bin\Debug\net6.0\Data\SeedData\brands.json
+F:\Work_22\Giza_Systems_23\Study_Plan\Udemy\Practical\E_Commerce\Backend\API\bin\Debug\net6.0\Data\SeedData\delivery.json
+F:\Work_22\Giza_Systems_23\Study_Plan\Udemy\Practical\E_Commerce\Backend\API\bin\Debug\net6.0\Data\SeedData\products.json
+F:\Work_22\Giza_Systems_23\Study_Plan\Udemy\Practical\E_Commerce\Backend\API\bin\Debug\net6.0\Data\SeedData\types.json

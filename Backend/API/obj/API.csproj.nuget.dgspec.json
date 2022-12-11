@@ -230,7 +230,7 @@
             },
             "Stripe.net": {
               "target": "Package",
-              "version": "[40.16.0, )"
+              "version": "[41.2.0, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

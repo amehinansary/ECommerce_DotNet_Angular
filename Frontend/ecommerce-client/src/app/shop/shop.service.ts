@@ -20,7 +20,7 @@ export class ShopService {
   types: IType[] = [];
   pagination = new Pagination() as any; // ! or as any to solve type null isn't assignable to ..
   shopParams = new ShopParams();
-  productCache = new Map();
+  productCache = new Map();// map => to store our data in a key: value pair
 
   constructor(private http: HttpClient) { }
 
@@ -74,31 +74,23 @@ export class ShopService {
   }
 
   getProduct(id: number | null) {
-    let product: IProduct | undefined = {
-      id: 0,
-      name: '',
-      description: '',
-      pictureUrl: '',
-      price: 0,
-      productBrand: '',
-      productType: ''
-    };
+    let product: IProduct | undefined;
 
     this.productCache.forEach((products: IProduct[]) => {
-      console.log(product);
       product = products.find(p => p.id === id);
+      console.log(product);// TODO: check here 'cause its undefined
     })
 
-    if (product) return of(product);
+    if (product) return of(product);// of => 'cause our product returns an observable
 
-    return this.http.get<IProduct>(this.baseUrl + 'products/getproduct/' + id);
+    return this.http.get<IProduct>(this.baseUrl + 'products/getproduct?id=' + id);
   }
 
   getBrands() {
     if (this.brands.length > 0) {
       return of(this.brands);
     }
-    return this.http.get<IBrand[]>(this.baseUrl + 'products/brands').pipe(
+    return this.http.get<IBrand[]>(this.baseUrl + 'products/brands').pipe(//rxjs operators
       map(response => {
         this.brands = response;
         return response;
