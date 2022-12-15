@@ -350,8 +350,13 @@ MigrationBackup/
 .ionide/
 
 # custom 
-obj
-bin
+API/obj
+API/bin
+/obj
+/bin
+*obj
+*bin
+
 appsettings.json
 *.db
 *.rdb
