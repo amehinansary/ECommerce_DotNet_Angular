@@ -12,7 +12,7 @@ namespace Infrastructure.Data
       var query = inputQuery;
 
       if (spec.Criteria != null)
-        query = query.Where(spec.Criteria);
+        query = query.Where(spec.Criteria);//p => p.ProductID == id
 
       if (spec.OrderBy != null)
         query = query.OrderBy(spec.OrderBy);
@@ -28,7 +28,8 @@ namespace Infrastructure.Data
       // callback Func (current, include), ask SWA Mabrouck?
 
       // so this is gonna aggregate one of the above queries with the include to a product brand
-      // so it's gonna aggregate Product with ProductBrand and ProductType
+      // so it's gonna aggregate Product with ProductBrand and aggregate any type of includes
+      // .Include(p=>p.productType).Include(p=>p.productBrand)
       query = spec.Includes.Aggregate(query, (current, include) => current.Include(include));
 
       return query;

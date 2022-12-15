@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wT4WBJkFsObBTRmmpgpGD1nrD5m8cL5L0yfQNT1b05s3Gpz21qOGgPEnoa4HKtrO1SrOECwD+zECGNbkCml6QQ==",
+  "dgSpecHash": "FCqd0vdWFkyHxnWLCqOTdERIKPFTunfSJduuVfzDmO2bVBAA/jJjTfjk5HRJg2P4nOzOi1Gi7t9SQdsZdkroMg==",
   "success": true,
   "projectFilePath": "F:\\Work_22\\Giza_Systems_23\\Study_Plan\\Udemy\\Practical\\E_Commerce\\Backend\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -55,8 +55,8 @@
     "C:\\Users\\Amehin\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
-    "C:\\Users\\Amehin\\.nuget\\packages\\npgsql\\6.0.7\\npgsql.6.0.7.nupkg.sha512",
-    "C:\\Users\\Amehin\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.7\\npgsql.entityframeworkcore.postgresql.6.0.7.nupkg.sha512",
+    "C:\\Users\\Amehin\\.nuget\\packages\\npgsql\\6.0.0\\npgsql.6.0.0.nupkg.sha512",
+    "C:\\Users\\Amehin\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.0\\npgsql.entityframeworkcore.postgresql.6.0.0.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.2\\pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.6\\sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
     "C:\\Users\\Amehin\\.nuget\\packages\\sqlitepclraw.core\\2.0.6\\sqlitepclraw.core.2.0.6.nupkg.sha512",

@@ -14,14 +14,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add builder.Services to the container.
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddControllers();
-builder.Services.AddDbContext<StoreContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultSqlite")));
-// builder.Services.AddDbContext<StoreContext>(x =>
-//     x.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+// builder.Services.AddDbContext<StoreContext>(options =>
+//     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultSqlite")));
+builder.Services.AddDbContext<StoreContext>(x =>
+    x.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<AppIdentityDbContext>(x =>
 {
-  x.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnectionSqlite"));
-  // x.UseNpgsql(builder.Configuration.GetConnectionString("IdentityConnection"));
+  // x.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnectionSqlite"));
+  x.UseNpgsql(builder.Configuration.GetConnectionString("IdentityConnection"));
 });
 builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
 {
@@ -60,8 +60,8 @@ app.UseStatusCodePagesWithReExecute("/errors/{0}");
 app.UseHttpsRedirection();
 
 app.UseRouting();
-app.UseStaticFiles();
-app.UseStaticFiles(new StaticFileOptions
+app.UseStaticFiles();//to serve wwwroot
+app.UseStaticFiles(new StaticFileOptions// to serve images to angular
 {
   FileProvider = new PhysicalFileProvider(
         Path.Combine(Directory.GetCurrentDirectory(), "Content")

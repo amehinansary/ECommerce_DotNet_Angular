@@ -4,257 +4,275 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+#nullable disable
 
 namespace Infrastructure.Data.Migrations
 {
-  [DbContext(typeof(StoreContext))]
-  partial class StoreContextModelSnapshot : ModelSnapshot
-  {
-    protected override void BuildModel(ModelBuilder modelBuilder)
+    [DbContext(typeof(StoreContext))]
+    partial class StoreContextModelSnapshot : ModelSnapshot
     {
+        protected override void BuildModel(ModelBuilder modelBuilder)
+        {
 #pragma warning disable 612, 618
-      modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-      modelBuilder.Entity("Core.Entities.OrderAggregate.DeliveryMethod", b =>
-          {
-            b.Property<int>("Id")
-                      .ValueGeneratedOnAdd()
-                      .HasColumnType("INTEGER");
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            b.Property<string>("DeliveryTime")
-                      .HasColumnType("TEXT");
+            modelBuilder.Entity("Core.Entities.OrderAggregate.DeliveryMethod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-            b.Property<string>("Description")
-                      .HasColumnType("TEXT");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-            b.Property<double>("Price")
-                      .HasColumnType("decimal(18,2)");
+                    b.Property<string>("DeliveryTime")
+                        .HasColumnType("text");
 
-            b.Property<string>("ShortName")
-                      .HasColumnType("TEXT");
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
 
-            b.HasKey("Id");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric(18,2)");
 
-            b.ToTable("DeliveryMethods");
-          });
+                    b.Property<string>("ShortName")
+                        .HasColumnType("text");
 
-      modelBuilder.Entity("Core.Entities.OrderAggregate.Order", b =>
-          {
-            b.Property<int>("Id")
-                      .ValueGeneratedOnAdd()
-                      .HasColumnType("INTEGER");
+                    b.HasKey("Id");
 
-            b.Property<string>("BuyerEmail")
-                      .HasColumnType("TEXT");
+                    b.ToTable("DeliveryMethods");
+                });
 
-            b.Property<int?>("DeliveryMethodId")
-                      .HasColumnType("INTEGER");
+            modelBuilder.Entity("Core.Entities.OrderAggregate.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-            b.Property<long>("OrderDate")
-                      .HasColumnType("INTEGER");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-            b.Property<string>("PaymentIntentId")
-                      .HasColumnType("TEXT");
+                    b.Property<string>("BuyerEmail")
+                        .HasColumnType("text");
 
-            b.Property<string>("Status")
-                      .IsRequired()
-                      .HasColumnType("TEXT");
+                    b.Property<int?>("DeliveryMethodId")
+                        .HasColumnType("integer");
 
-            b.Property<double>("Subtotal")
-                      .HasColumnType("REAL");
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("timestamp with time zone");
 
-            b.HasKey("Id");
+                    b.Property<string>("PaymentIntentId")
+                        .HasColumnType("text");
 
-            b.HasIndex("DeliveryMethodId");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-            b.ToTable("Orders");
-          });
+                    b.Property<decimal>("Subtotal")
+                        .HasColumnType("numeric");
 
-      modelBuilder.Entity("Core.Entities.OrderAggregate.OrderItem", b =>
-          {
-            b.Property<int>("Id")
-                      .ValueGeneratedOnAdd()
-                      .HasColumnType("INTEGER");
+                    b.HasKey("Id");
 
-            b.Property<int?>("OrderId")
-                      .HasColumnType("INTEGER");
+                    b.HasIndex("DeliveryMethodId");
 
-            b.Property<double>("Price")
-                      .HasColumnType("decimal(18,2)");
+                    b.ToTable("Orders");
+                });
 
-            b.Property<int>("Quantity")
-                      .HasColumnType("INTEGER");
+            modelBuilder.Entity("Core.Entities.OrderAggregate.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-            b.HasKey("Id");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-            b.HasIndex("OrderId");
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("integer");
 
-            b.ToTable("OrderItems");
-          });
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric(18,2)");
 
-      modelBuilder.Entity("Core.Entities.Product", b =>
-          {
-            b.Property<int>("Id")
-                      .ValueGeneratedOnAdd()
-                      .HasColumnType("INTEGER");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
 
-            b.Property<string>("Description")
-                      .IsRequired()
-                      .HasColumnType("TEXT");
+                    b.HasKey("Id");
 
-            b.Property<string>("Name")
-                      .IsRequired()
-                      .HasMaxLength(100)
-                      .HasColumnType("TEXT");
+                    b.HasIndex("OrderId");
 
-            b.Property<string>("PictureUrl")
-                      .IsRequired()
-                      .HasColumnType("TEXT");
+                    b.ToTable("OrderItems");
+                });
 
-            b.Property<double>("Price")
-                      .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity("Core.Entities.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-            b.Property<int>("ProductBrandId")
-                      .HasColumnType("INTEGER");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-            b.Property<int>("ProductTypeId")
-                      .HasColumnType("INTEGER");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-            b.HasKey("Id");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-            b.HasIndex("ProductBrandId");
+                    b.Property<string>("PictureUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-            b.HasIndex("ProductTypeId");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric(18,2)");
 
-            b.ToTable("Products");
-          });
+                    b.Property<int>("ProductBrandId")
+                        .HasColumnType("integer");
 
-      modelBuilder.Entity("Core.Entities.ProductBrand", b =>
-          {
-            b.Property<int>("Id")
-                      .ValueGeneratedOnAdd()
-                      .HasColumnType("INTEGER");
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("integer");
 
-            b.Property<string>("Name")
-                      .HasColumnType("TEXT");
+                    b.HasKey("Id");
 
-            b.HasKey("Id");
+                    b.HasIndex("ProductBrandId");
 
-            b.ToTable("ProductBrands");
-          });
+                    b.HasIndex("ProductTypeId");
 
-      modelBuilder.Entity("Core.Entities.ProductType", b =>
-          {
-            b.Property<int>("Id")
-                      .ValueGeneratedOnAdd()
-                      .HasColumnType("INTEGER");
+                    b.ToTable("Products");
+                });
 
-            b.Property<string>("Name")
-                      .HasColumnType("TEXT");
+            modelBuilder.Entity("Core.Entities.ProductBrand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-            b.HasKey("Id");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-            b.ToTable("ProductTypes");
-          });
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
 
-      modelBuilder.Entity("Core.Entities.OrderAggregate.Order", b =>
-          {
-            b.HasOne("Core.Entities.OrderAggregate.DeliveryMethod", "DeliveryMethod")
-                      .WithMany()
-                      .HasForeignKey("DeliveryMethodId");
+                    b.HasKey("Id");
 
-            b.OwnsOne("Core.Entities.OrderAggregate.Address", "ShipToAddress", b1 =>
-                      {
-                        b1.Property<int>("OrderId")
-                                  .HasColumnType("INTEGER");
+                    b.ToTable("ProductBrands");
+                });
 
-                        b1.Property<string>("City")
-                                  .HasColumnType("TEXT");
+            modelBuilder.Entity("Core.Entities.ProductType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-                        b1.Property<string>("FirstName")
-                                  .HasColumnType("TEXT");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                        b1.Property<string>("LastName")
-                                  .HasColumnType("TEXT");
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
 
-                        b1.Property<string>("State")
-                                  .HasColumnType("TEXT");
+                    b.HasKey("Id");
 
-                        b1.Property<string>("Street")
-                                  .HasColumnType("TEXT");
+                    b.ToTable("ProductTypes");
+                });
 
-                        b1.Property<string>("ZipCode")
-                                  .HasColumnType("TEXT");
+            modelBuilder.Entity("Core.Entities.OrderAggregate.Order", b =>
+                {
+                    b.HasOne("Core.Entities.OrderAggregate.DeliveryMethod", "DeliveryMethod")
+                        .WithMany()
+                        .HasForeignKey("DeliveryMethodId");
 
-                        b1.HasKey("OrderId");
+                    b.OwnsOne("Core.Entities.OrderAggregate.Address", "ShipToAddress", b1 =>
+                        {
+                            b1.Property<int>("OrderId")
+                                .HasColumnType("integer");
 
-                        b1.ToTable("Orders");
+                            b1.Property<string>("City")
+                                .HasColumnType("text");
 
-                        b1.WithOwner()
-                                  .HasForeignKey("OrderId");
-                      });
+                            b1.Property<string>("FirstName")
+                                .HasColumnType("text");
 
-            b.Navigation("DeliveryMethod");
+                            b1.Property<string>("LastName")
+                                .HasColumnType("text");
 
-            b.Navigation("ShipToAddress");
-          });
+                            b1.Property<string>("State")
+                                .HasColumnType("text");
 
-      modelBuilder.Entity("Core.Entities.OrderAggregate.OrderItem", b =>
-          {
-            b.HasOne("Core.Entities.OrderAggregate.Order", null)
-                      .WithMany("OrderItems")
-                      .HasForeignKey("OrderId")
-                      .OnDelete(DeleteBehavior.Cascade);
+                            b1.Property<string>("Street")
+                                .HasColumnType("text");
 
-            b.OwnsOne("Core.Entities.OrderAggregate.ProductItemOrdered", "ItemOrdered", b1 =>
-                      {
-                        b1.Property<int>("OrderItemId")
-                                  .HasColumnType("INTEGER");
+                            b1.Property<string>("ZipCode")
+                                .HasColumnType("text");
 
-                        b1.Property<string>("PictureUrl")
-                                  .HasColumnType("TEXT");
+                            b1.HasKey("OrderId");
 
-                        b1.Property<int>("ProductItemId")
-                                  .HasColumnType("INTEGER");
+                            b1.ToTable("Orders");
 
-                        b1.Property<string>("ProductName")
-                                  .HasColumnType("TEXT");
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
 
-                        b1.HasKey("OrderItemId");
+                    b.Navigation("DeliveryMethod");
 
-                        b1.ToTable("OrderItems");
+                    b.Navigation("ShipToAddress");
+                });
 
-                        b1.WithOwner()
-                                  .HasForeignKey("OrderItemId");
-                      });
+            modelBuilder.Entity("Core.Entities.OrderAggregate.OrderItem", b =>
+                {
+                    b.HasOne("Core.Entities.OrderAggregate.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-            b.Navigation("ItemOrdered");
-          });
+                    b.OwnsOne("Core.Entities.OrderAggregate.ProductItemOrdered", "ItemOrdered", b1 =>
+                        {
+                            b1.Property<int>("OrderItemId")
+                                .HasColumnType("integer");
 
-      modelBuilder.Entity("Core.Entities.Product", b =>
-          {
-            b.HasOne("Core.Entities.ProductBrand", "ProductBrand")
-                      .WithMany()
-                      .HasForeignKey("ProductBrandId")
-                      .OnDelete(DeleteBehavior.Cascade)
-                      .IsRequired();
+                            b1.Property<string>("PictureUrl")
+                                .HasColumnType("text");
 
-            b.HasOne("Core.Entities.ProductType", "ProductType")
-                      .WithMany()
-                      .HasForeignKey("ProductTypeId")
-                      .OnDelete(DeleteBehavior.Cascade)
-                      .IsRequired();
+                            b1.Property<int>("ProductItemId")
+                                .HasColumnType("integer");
 
-            b.Navigation("ProductBrand");
+                            b1.Property<string>("ProductName")
+                                .HasColumnType("text");
 
-            b.Navigation("ProductType");
-          });
+                            b1.HasKey("OrderItemId");
 
-      modelBuilder.Entity("Core.Entities.OrderAggregate.Order", b =>
-          {
-            b.Navigation("OrderItems");
-          });
+                            b1.ToTable("OrderItems");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderItemId");
+                        });
+
+                    b.Navigation("ItemOrdered");
+                });
+
+            modelBuilder.Entity("Core.Entities.Product", b =>
+                {
+                    b.HasOne("Core.Entities.ProductBrand", "ProductBrand")
+                        .WithMany()
+                        .HasForeignKey("ProductBrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.ProductType", "ProductType")
+                        .WithMany()
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductBrand");
+
+                    b.Navigation("ProductType");
+                });
+
+            modelBuilder.Entity("Core.Entities.OrderAggregate.Order", b =>
+                {
+                    b.Navigation("OrderItems");
+                });
 #pragma warning restore 612, 618
+        }
     }
-  }
 }

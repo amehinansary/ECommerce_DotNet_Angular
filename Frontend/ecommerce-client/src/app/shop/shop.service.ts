@@ -78,7 +78,7 @@ export class ShopService {
 
     this.productCache.forEach((products: IProduct[]) => {
       product = products.find(p => p.id === id);
-      console.log(product);// TODO: check here 'cause its undefined
+      // console.log(product);// TODO: check here 'cause its undefined
     })
 
     if (product) return of(product);// of => 'cause our product returns an observable

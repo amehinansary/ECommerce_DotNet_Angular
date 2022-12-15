@@ -24,7 +24,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   loadProduct() {// here u can do the new implemn of subscribe
-    console.log(+this.activatedRoute.snapshot.paramMap.get('id'));
+    // console.log(+this.activatedRoute.snapshot.paramMap.get('id'));
     this.shopService.getProduct(+this.activatedRoute.snapshot.paramMap.get('id')).subscribe({
       next: (product) => {
         this.product = product;

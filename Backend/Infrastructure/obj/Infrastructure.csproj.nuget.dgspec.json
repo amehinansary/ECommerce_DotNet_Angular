@@ -134,7 +134,7 @@
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[6.0.7, )"
+              "version": "[6.0.0, )"
             },
             "StackExchange.Redis": {
               "target": "Package",

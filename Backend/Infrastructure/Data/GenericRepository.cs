@@ -39,7 +39,7 @@ namespace Infrastructure.Data
 
       return await query.ToListAsync();
     }
-
+    // we want the entity and the the spec
     private IQueryable<T> ApplySpecification(ISpecification<T> spec)
     {
       return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);

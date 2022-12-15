@@ -22,7 +22,7 @@ namespace Core.Entities.OrderAggregate
     }
 
     public string BuyerEmail { get; set; }// we gonna retrieve a list of buyer orders based on this
-    public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
+    public DateTime OrderDate { get; set; } = DateTime.UtcNow;
     public Address ShipToAddress { get; set; }
     public DeliveryMethod DeliveryMethod { get; set; }
     public IReadOnlyList<OrderItem> OrderItems { get; set; }

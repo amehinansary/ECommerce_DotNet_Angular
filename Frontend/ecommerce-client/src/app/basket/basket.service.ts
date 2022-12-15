@@ -26,7 +26,7 @@ export class BasketService {
       .pipe(
         map((basket: any) => { // sooooolve these new changes to ts // IBasket
           this.basketSource.next(basket);
-          console.log(this.getCurrentBasketValue());
+          // console.log(this.getCurrentBasketValue());
         })
       )
   }

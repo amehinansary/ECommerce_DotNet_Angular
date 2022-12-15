@@ -29,7 +29,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (error.status === 401) {
             this.toastr.error(error.error.message, error.error.statusCode);
           }
-          if (error.status === 404 || error.ok == false) {
+          if (error.status === 404) {
             this.router.navigateByUrl('/not-found');
           }
           if (error.status === 500) {//state: is the name of object we using to store the exception
